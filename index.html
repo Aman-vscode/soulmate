@@ -100,8 +100,14 @@
       outline: 2px solid #ff3576;
     }
     @media (max-width: 720px) {
+      .frame-header {
+        padding: 1rem;
+        justify-content: space-between;
+        height: 70px;
+      }
       #logo {
         width: 90px;
+        height: 70px;
       }
       .menu-toggle {
         display: block;
@@ -124,6 +130,12 @@
       }
       .frame-nav.open {
         display: flex;
+      }
+      .frame-content {
+        min-height: 90vh;
+      }
+      #mainFrame {
+        min-height: 90vh;
       }
       .frame-nav a {
         width: 100%;
