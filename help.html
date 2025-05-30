@@ -13,6 +13,17 @@
       color: #222;
       background: linear-gradient(135deg, #f30554 0%, #c30af6 100%);
     }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1.2rem 1rem;
+      background: rgb(41, 41, 41);
+      color: #ffffff;
+      font-size: 1rem;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+      position: relative;
+      z-index: 2;
+      display: none;
+    }
     .faq-container {
       max-width: 700px;
       margin: 2.5rem auto;
@@ -186,6 +197,9 @@
         top: 10px;
         left: 10px;
       }
+      footer{
+        padding: 1.5rem 1rem;
+      }
     }
     @media (max-width: 480px) {
       .faq-container {
@@ -260,12 +274,16 @@
       </div>
     </div>
   </div>
+  <footer id="footer">
+       &copy; 2024 SoulMate Matrimony. All Rights Reserved.
+    </footer>
   <script>
     // Skeleton loading simulation
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         document.getElementById('skeletonLoader').style.display = 'none';
         document.getElementById('faqContent').style.display = 'block';
+        document.getElementById('footer').style.display = 'block';
 
         // Toggle FAQ answer display
         document.querySelectorAll('.faq-question').forEach(q => {
