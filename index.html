@@ -168,23 +168,49 @@
   
   </div>
   <script>
-    // Highlight active nav link
-    const navLinks = document.querySelectorAll('.frame-nav a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        // Hide menu on click (for mobile)
-        document.getElementById('frameNav').classList.remove('open');
-      });
+  // Highlight active nav link
+  const navLinks = document.querySelectorAll('.frame-nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+      // Hide menu on click (for mobile)
+      document.getElementById('frameNav').classList.remove('open');
     });
+  });
 
-    // Slide menu for small screens
-    const menuToggle = document.getElementById('menuToggle');
-    const frameNav = document.getElementById('frameNav');
-    menuToggle.onclick = function() {
-      frameNav.classList.toggle('open');
-    };
+  // Slide menu for small screens
+  const menuToggle = document.getElementById('menuToggle');
+  const frameNav = document.getElementById('frameNav');
+  menuToggle.onclick = function(e) {
+    e.stopPropagation();
+    frameNav.classList.toggle('open');
+  };
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (
+      frameNav.classList.contains('open') &&
+      !frameNav.contains(e.target) &&
+      e.target !== menuToggle
+    ) {
+      frameNav.classList.remove('open');
+    }
+  });
+
+  // Close menu when clicking inside the iframe
+  const mainFrame = document.getElementById('mainFrame');
+  mainFrame.addEventListener('load', function() {
+    try {
+      mainFrame.contentWindow.document.addEventListener('mousedown', function() {
+        if (frameNav.classList.contains('open')) {
+          frameNav.classList.remove('open');
+        }
+      });
+    } catch (e) {
+      // Ignore cross-origin iframes
+    }
+  });
   </script>
 </body>
 </html>
