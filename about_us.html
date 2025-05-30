@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - SoulMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8fa;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      background: linear-gradient(135deg, #f30554 0%, #c30af6 100%);
+    }
+    .about-container {
+      max-width: 800px;
+      margin: 2.5rem auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(19, 22, 70, 0.08);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+    h1 {
+      color: #ff3576;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+    .about-img {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      width: 120px;
+      border-radius: 24px;
+    }
+    .about-content {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .about-values {
+      margin-top: 2rem;
+      padding: 1.5rem 1rem;
+      background: #fff0f6;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(255,53,118,0.05);
+    }
+    .about-values h2 {
+      color: #ff3576;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .about-values ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    .about-values li {
+      margin-bottom: 0.7rem;
+      font-size: 1.07rem;
+      color: #444;
+    }
+    .close-about {
+        position: absolute;
+      top: 22px;
+      left: 22px;
+      font-size: 2.2rem;
+      color: #ff3576;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 10;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-about:hover {
+        color: #ff6b6b;
+    }
+    /* Skeleton Loader Styles */
+    .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+      animation: pulse 1.5s infinite linear;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .skeleton-img {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 1.5rem auto;
+        border-radius: 24px;
+    }
+    .skeleton-title {
+        width: 60%;
+        height: 32px;
+        margin: 0 auto 24px auto;
+    }
+    .skeleton-text {
+        width: 90%;
+        height: 18px;
+        margin: 0 auto 10px auto;
+    }
+    .skeleton-values-title {
+        width: 40%;
+        height: 22px;
+        margin: 24px auto 16px auto;
+    }
+    .skeleton-value {
+        width: 70%;
+        height: 16px;
+        margin: 0 auto 10px auto;
+    }
+    @keyframes pulse {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+    @media (max-width: 720px) {
+        .about-container {
+            padding: 1.2rem 0.5rem;
+            width: 90%;
+        }
+        h1 {
+            font-size: 1.3rem;
+        }
+        .about-content {
+            font-size: 1rem;
+        }
+        .skeleton-title { height: 24px; }
+        .skeleton-text { height: 16px; }
+        .close-about {
+            font-size: 1.8rem;
+            top: 10px;
+            left: 10px;
+        }
+    }
+    @media (max-width: 460px) {
+        .about-container {
+            width: 90%;
+            padding: 1.2rem 0.5rem;
+        }
+        h1 {
+            font-size: 1.2rem;
+        }
+        .skeleton-title { height: 24px; }
+        .skeleton-text { height: 16px; }
+        .close-about {
+            font-size: 1.8rem;
+            top: 3px;
+            left: 3px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="about-container" id="aboutContainer">
+        <!-- Skeleton Loader -->
+        <div id="skeletonLoader">
+            <button class="close-about" style="pointer-events:none;">&times;</button>
+      <div class="skeleton skeleton-img"></div>
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-values-title"></div>
+      <div class="skeleton skeleton-value"></div>
+      <div class="skeleton skeleton-value"></div>
+      <div class="skeleton skeleton-value"></div>
+      <div class="skeleton skeleton-value"></div>
+      <div class="skeleton skeleton-value"></div>
+    </div>
+    <!-- Actual Content (hidden initially) -->
+    <div id="aboutContent" style="display:none;">
+      <!-- Cross button at top left -->
+      <button class="close-about" onclick="history.back()" >&times;</button>
+      <img src="logo.png" alt="SoulMate Logo" class="about-img">
+      <h1>About SoulMate</h1>
+      <div class="about-content">
+        <p>
+          <strong>SoulMate</strong> is India's most trusted and innovative matrimony platform, dedicated to helping people find their perfect life partners. Founded in 2024, our mission is to make the journey of finding a soulmate simple, secure, and successful for everyone.
+        </p>
+        <p>
+          We combine advanced technology with a personal touch, offering a safe and user-friendly environment for singles and families. Our team is passionate about building meaningful connections and celebrating countless success stories.
+        </p>
+        <p>
+          Whether you are searching for yourself or registering for a loved one, SoulMate is here to support you every step of the way.
+        </p>
+      </div>
+      <div class="about-values">
+        <h2>Our Values</h2>
+        <ul>
+          <li>✔️ Trust, privacy, and security for every member</li>
+          <li>✔️ Genuine profiles and verified matches</li>
+          <li>✔️ Easy-to-use, modern technology</li>
+          <li>✔️ Dedicated support and guidance</li>
+          <li>✔️ Celebrating love, diversity, and happy unions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Skeleton loading simulation
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.getElementById('skeletonLoader').style.display = 'none';
+        document.getElementById('aboutContent').style.display = 'block';
+      }, 1200); // 1.2 seconds skeleton loading
+    });
+  </script>
+</body>
+</html>

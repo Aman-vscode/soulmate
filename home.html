@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your SoulMate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      width: 100%;
+      color: #222;
+      position: relative;
+      background: url('https://t4.ftcdn.net/jpg/06/39/80/75/360_F_639807553_uwUKbAadh2moLIRDQo4vzYJo1CeQLNYH.jpg') center/cover no-repeat fixed;
+    }
+
+    /* Overlay for better readability */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(34, 34, 34, 0.45);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      background: transparent;
+      padding: 2.2rem 1rem 1.2rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      color: #ff3576;
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h2 {
+      font-size: 2.7rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+      color: #f8f8f8;
+      font-weight: 400;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.13);
+    }
+
+    .hero .tagline {
+      color: #ff3576;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.13);
+    }
+
+    .form-container {
+      max-width: 420px;
+      width: 96%;
+      margin: 2.5rem auto 2rem auto;
+      background: rgba(255, 255, 255, 0.295);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+      padding: 2.2rem 2rem 1.5rem 2rem;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(2px);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: box-shadow 0.2s;
+    }
+
+    .form-container h3 {
+      margin-bottom: 1.2rem;
+      color: #ff3576;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 7px;
+      font-size: 1rem;
+      background: #f8f8fa;
+      transition: border 0.2s, box-shadow 0.2s;
+      font-weight: 500;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff3576;
+      box-shadow: 0 0 0 2px #ff357633;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #ff3576 0%, #ff6b6b 100%);
+      color: white;
+      border: none;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 7px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(255,53,118,0.08);
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #ff6b6b 0%, #ff3576 100%);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 4px 18px rgba(255,53,118,0.13);
+    }
+    
+    /* Success Stories Section Styles */
+    .success-stories {
+      max-width: 900px;
+      margin: 2.5rem auto 2rem auto;
+      background: rgba(255,255,255,0.82);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+      padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .success-stories h3 {
+      color: #ff3576;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+    .stories-grid {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .story-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      padding: 1.2rem 1rem 1rem 1rem;
+      max-width: 260px;
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .story-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(255,53,118,0.13);
+    }
+    .story-card img {
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 0.7rem;
+      border: 3px solid #ff3576;
+    }
+    .story-card h4 {
+      margin: 0.4rem 0 0.3rem 0;
+      color: #ff3576;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .story-card p {
+      font-size: 0.98rem;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* Info Section Styles */
+    .info-section {
+      max-width: 900px;
+      margin: 2rem auto 0 auto;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.85);
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(31,38,135,0.10);
+      padding: 2rem 1.5rem;
+      z-index: 2;
+      position: relative;
+    }
+    .info-section h3 {
+      color: #ff3576;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+    }
+    .info-types, .info-how {
+      flex: 1 1 320px;
+      min-width: 260px;
+    }
+    .info-types ul, .info-how ol {
+      margin-left: 1.2rem;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .info-types li, .info-how li {
+      margin-bottom: 0.5rem;
+    }
+    .info-types strong, .info-how strong {
+      color: #ff3576;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1.2rem 1rem;
+      background: rgb(41, 41, 41);
+      color: #ffffff;
+      font-size: 1rem;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+      position: relative;
+      z-index: 2;
+    }
+
+    
+    .show-register-btn {
+      background: linear-gradient(90deg, #ff3576 0%, #ff6b6b 100%);
+      color: #fff;
+      border: none;
+      width: 220px;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(255,53,118,0.08);
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+    .show-register-btn:hover {
+      background: linear-gradient(90deg, #ff6b6b 0%, #ff3576 100%);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 4px 18px rgba(255,53,118,0.13);
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(34,34,34,0.55);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: transparent;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(31,38,135,0.18);
+      padding: 0;
+      position: relative;
+      min-width: 340px;
+      max-width: 95vw;
+      width: 400px;
+      animation: modalPop 0.25s;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 22px;
+      font-size: 2rem;
+      color: #ff3576;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 10;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: #ff6b6b;
+    }
+    @media (max-width: 700px) {
+      .hero {
+        padding: 2rem 1rem 1rem 1rem;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+      .form-container {
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem;
+      }
+      .stories-grid {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: center;
+      }
+      .success-stories {
+        padding: 1.2rem 0.5rem;
+      }
+      .info-section {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.2rem 0.5rem;
+      }
+     
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.2rem;
+      }
+      .hero h2 {
+        font-size: 1.3rem;
+      }
+      .form-container h3 {
+        font-size: 1.1rem;
+      }
+      input, select, button {
+        font-size: 0.95rem;
+        padding: 0.6rem;
+      }
+          .modal-content {
+        min-width: 0;
+        width: 98vw;
+        padding: 0;
+      }
+      .show-register-btn{
+        width: 180px;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>  
+    <h1>💖 Find Your Perfect Match</h1>
+  </header>
+  <section class="hero">
+    <div class="tagline">India's Most Trusted Matrimony Platform</div>
+    <h2>Welcome to SoulMate</h2>
+    <p>Join thousands of people looking for their life partners.<br>It's simple, safe, and secure.</p>
+  </section>
+
+  <!-- Register Now Button -->
+  <div style="text-align:center; margin: 2rem 0; z-index: 2; position: relative;">
+    <button id="showRegisterBtn" class="show-register-btn">Register Now</button>
+  </div>
+
+  <!-- Types of Registering & How It Works Section -->
+  <section class="info-section">
+    <div class="info-types">
+      <h3>Types of Registering</h3>
+      <ul>
+        <li><strong>Self Registration:</strong> Create your own profile and search for matches directly.</li>
+        <li><strong>Parent/Guardian Registration:</strong> Register on behalf of your son, daughter, or relative.</li>
+        <li><strong>Assisted Registration:</strong> Let our team help you set up your profile and preferences.</li>
+      </ul>
+    </div>
+    <div class="info-how">
+      <h3>How It Works</h3>
+      <ol>
+        <li><strong>Register:</strong> Fill in your details and create your profile.</li>
+        <li><strong>Set Preferences:</strong> Choose your match preferences (age, city, etc.).</li>
+        <li><strong>Search & Connect:</strong> Browse recommended matches and connect securely.</li>
+        <li><strong>Start Conversation:</strong> Chat and get to know your matches.</li>
+        <li><strong>Find Your SoulMate:</strong> Take the next step towards a happy relationship!</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Floating Modal Registration Form -->
+  <div id="registerModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModalBtn">&times;</span>
+      <section class="form-container" style="margin:0; box-shadow:none; background:rgba(255,255,255,0.98);">
+        <h3>Register Now</h3>
+        <form id="registerForm">
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <input type="number" placeholder="Age" required />
+          <select required>
+            <option value="">Looking For</option>
+            <option value="bride">Bride</option>
+            <option value="groom">Groom</option>
+          </select>
+          <input type="text" placeholder="City" required />
+          <button type="submit">Create Profile</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Success Stories Section -->
+  <section class="success-stories">
+    <h3>Success Stories</h3>
+    <div class="stories-grid">
+      <div class="story-card">
+        <img src="https://img.weddingbazaar.com/shaadisaga_production/photos/pictures/006/388/341/new_medium/ZAK_5945.JPG?1680001263" alt="Amit & Priya" />
+        <h4>Amit & Priya</h4>
+        <p>"We met on SoulMate and instantly connected. Now, we are happily married! Thank you for making our dream come true."</p>
+      </div>
+      <div class="story-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuF_a5cRcyKymSkZSLFs9w4jxQ-BMU3MDHng&s" alt="Rahul & Sneha" />
+        <h4>Rahul & Sneha</h4>
+        <p>"SoulMate made it easy to find my perfect match. The process was smooth and secure. Highly recommended!"</p>
+      </div>
+      <div class="story-card">
+        <img src="https://media.istockphoto.com/id/529157517/photo/lovely-young-indian-couple-outdoors.jpg?s=612x612&w=0&k=20&c=JAmQwqQw9eC2Ak4eagPyTL0WtLLEfdSnTOLrYkGyiMg=" alt="Vikram & Anjali" />
+        <h4>Vikram & Anjali</h4>
+        <p>"We are grateful to SoulMate for bringing us together. Our families are so happy. Thank you!"</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+      &copy; 2024 SoulMate Matrimony. All Rights Reserved.
+    </footer>
+  <script>
+    // Modal logic
+    const showBtn = document.getElementById('showRegisterBtn');
+    const modal = document.getElementById('registerModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const form = document.getElementById('registerForm');
+
+    showBtn.onclick = function() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+    closeBtn.onclick = function() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      alert('Thanks for registering! We will get back to you soon.');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      form.reset();
+    };
+  </script>
+</body>
+</html>

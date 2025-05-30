@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your SoulMate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      width: 100%;
+      color: #ffffff;
+      position: relative;
+      background:rgb(41, 41, 41);
+    }
+    #frame-layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+    .frame-header {
+      width: 100%;
+      background: transparent;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem 1rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    #logo {
+      width: 110px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+      transition: width 0.2s;
+    }
+    .frame-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .frame-nav a {
+      color: #ff3576;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.5px;
+      display: inline-block;
+    }
+    .frame-nav a:hover,
+    .frame-nav a.active {
+      background: linear-gradient(90deg, #ff3576 0%, #ff6b6b 100%);
+      color: #fff;
+    }
+    .frame-content {
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 70vh;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    #mainFrame {
+      width: 100%;
+      min-height: 80vh;
+      border: none;
+      background: transparent;
+      z-index: 2;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #ff3576;
+      cursor: pointer;
+      margin-left: 1rem;
+      z-index: 201;
+      transition: color 0.2s;
+    }
+    .menu-toggle:focus {
+      outline: 2px solid #ff3576;
+    }
+    @media (max-width: 720px) {
+      #logo {
+        width: 90px;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .frame-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        background: rgba(41,41,41,0.98);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+        border-radius: 0 0 12px 12px;
+        padding: 1rem 0.5rem;
+        z-index: 200;
+        display: none;
+        animation: slideDown 0.25s;
+      }
+      .frame-nav.open {
+        display: flex;
+      }
+      .frame-nav a {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        font-size: 1.05rem;
+        border-radius: 10px;
+        margin: 0.1rem 0;
+        text-align: left;
+        transition: background 0.2s, color 0.2s;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px);}
+        to { opacity: 1; transform: translateY(0);}
+      }
+    }
+    @media (max-width: 460px) {
+      .frame-nav a {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+      }
+      #logo {
+        width: 80px;
+      }
+    } 
+  </style>
+</head>
+<body>
+  <div id="frame-layout">
+    <div class="frame-header">
+      <img id="logo" src="logo.png" alt="SoulMate Logo"/>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">&#9776;</button>
+      <nav class="frame-nav" id="frameNav">
+        <a href="home.html" target="mainFrame" class="active">Home</a>
+        <a href="about_us.html" target="mainFrame">About Us</a>
+        <a href="contact.html" target="mainFrame">Contact</a>
+        <a href="help.html" target="mainFrame">Help</a>
+      </nav>
+    </div>
+    <div class="frame-content">
+      <iframe id="mainFrame" name="mainFrame" src="home.html"></iframe>
+    </div>
+  
+  </div>
+  <script>
+    // Highlight active nav link
+    const navLinks = document.querySelectorAll('.frame-nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        // Hide menu on click (for mobile)
+        document.getElementById('frameNav').classList.remove('open');
+      });
+    });
+
+    // Slide menu for small screens
+    const menuToggle = document.getElementById('menuToggle');
+    const frameNav = document.getElementById('frameNav');
+    menuToggle.onclick = function() {
+      frameNav.classList.toggle('open');
+    };
+  </script>
+</body>
+</html>

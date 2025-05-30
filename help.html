@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Help & FAQ - SoulMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8fa;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      background: linear-gradient(135deg, #f30554 0%, #c30af6 100%);
+    }
+    .faq-container {
+      max-width: 700px;
+      margin: 2.5rem auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(31,38,135,0.08);
+      padding: 2rem 1.5rem;
+      position: relative;
+      min-height: 400px;
+    }
+    h2 {
+      color: #ff3576;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .faq-list {
+      margin-bottom: 2rem;
+    }
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+    .faq-question {
+      font-weight: 600;
+      color: #ff3576;
+      cursor: pointer;
+      margin-bottom: 0.3rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover {
+      color: #ff6b6b;
+    }
+    .faq-answer {
+      display: none;
+      margin-left: 1rem;
+      color: #444;
+      font-size: 1rem;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .add-question-section {
+      border-top: 1px solid #eee;
+      padding-top: 1.5rem;
+    }
+    .add-question-section h3 {
+      color: #ff3576;
+      margin-bottom: 0.7rem;
+    }
+    .add-question-section input {
+      width: 90%;
+      padding: 0.7rem;
+      margin-bottom: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .add-question-section button {
+      background: linear-gradient(90deg, #ff3576 0%, #ff6b6b 100%);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .add-question-section button:hover {
+      background: linear-gradient(90deg, #ff6b6b 0%, #ff3576 100%);
+    }
+    .close-help {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-size: 2.2rem;
+      color: #ff3576;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 10;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-help:hover {
+      color: #ff6b6b;
+    }
+    .faq-container {
+      position: relative;
+    }
+    .contact-section {
+      border-top: 1px solid #eee;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      color: #222;
+    }
+    .contact-section h3 {
+      color: #ff3576;
+      margin-bottom: 0.7rem;
+    }
+    .contact-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0 0;
+    }
+    .contact-section li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    .contact-section a {
+      color: #ff3576;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-section a:hover {
+      color: #ff6b6b;
+      text-decoration: underline;
+    }
+    /* Skeleton Loader Styles */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: pulse 1.5s infinite linear;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .skeleton-title {
+      width: 60%;
+      height: 32px;
+      margin: 0 auto 24px auto;
+    }
+    .skeleton-question {
+      width: 80%;
+      height: 22px;
+      margin: 0 0 8px 0;
+    }
+    .skeleton-answer {
+      width: 90%;
+      height: 16px;
+      margin-left: 1rem;
+      margin-bottom: 18px;
+    }
+    .skeleton-input {
+      width: 90%;
+      height: 38px;
+      margin-bottom: 10px;
+      margin-left: 0;
+    }
+    .skeleton-btn {
+      width: 120px;
+      height: 38px;
+      margin: 0 auto 0 0;
+    }
+    @keyframes pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    @media (max-width: 720px) {
+      .faq-container {
+        padding: 1rem 0.3rem;
+        height: auto;
+        width: 90%;
+      }
+      .skeleton-title { height: 24px; }
+      .skeleton-question { height: 16px; }
+      .skeleton-answer { height: 12px; }
+      .close-help {
+        font-size: 1.8rem;
+        top: 10px;
+        left: 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      .faq-container {
+        padding: 0.5rem 0.2rem;
+        width: 95%;
+      }
+      .skeleton-title { height: 20px; }
+      .skeleton-question { height: 14px; }
+      .skeleton-answer { height: 10px; }
+      .close-help {
+        font-size: 1.6rem;
+        top: 3px;
+        left: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container" id="faqContainer">
+    <!-- Skeleton Loader -->
+    <button class="close-help" onclick="history.back()" >&times;</button>
+    <div id="skeletonLoader">
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-question"></div>
+      <div class="skeleton skeleton-answer"></div>
+      <div class="skeleton skeleton-question"></div>
+      <div class="skeleton skeleton-answer"></div>
+      <div class="skeleton skeleton-question"></div>
+      <div class="skeleton skeleton-answer"></div>
+      <div class="skeleton skeleton-question"></div>
+      <div class="skeleton skeleton-answer"></div>
+      <div class="skeleton skeleton-input"></div>
+      <div class="skeleton skeleton-btn"></div>
+    </div>
+    <!-- Actual Content (hidden initially) -->
+    <div id="faqContent" style="display:none;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <div class="faq-question">How do I register on SoulMate?</div>
+          <div class="faq-answer">Click the "Register Now" button on the homepage and fill out the registration form with your details.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is my information safe and private?</div>
+          <div class="faq-answer">Yes, your information is kept secure and private. We never share your data without your consent.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How do I find a suitable match?</div>
+          <div class="faq-answer">After registering, set your preferences and browse through recommended matches. You can connect and chat securely.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I register for someone else?</div>
+          <div class="faq-answer">Yes, parents or guardians can register on behalf of their children or relatives.</div>
+        </div>
+      </div>
+      <div class="add-question-section">
+        <h3>Ask a New Question</h3>
+        <form id="addQuestionForm">
+          <input type="text" id="newQuestion" placeholder="Your question..." required>
+          <button type="submit">Submit Question</button>
+        </form>
+      </div>
+      <!-- Contact Us Section -->
+      <div class="contact-section">
+        <h3>Contact Us</h3>
+        <p>If you need further assistance, feel free to reach out:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:support@soulmate.com">support@soulmate.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></li>
+          <li><strong>Address:</strong> 123, SoulMate Lane, New Delhi, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Skeleton loading simulation
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.getElementById('skeletonLoader').style.display = 'none';
+        document.getElementById('faqContent').style.display = 'block';
+
+        // Toggle FAQ answer display
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+          });
+        });
+
+        // Only take input for question, do not display it
+        document.getElementById('addQuestionForm').onsubmit = function(e) {
+          e.preventDefault();
+          document.getElementById('addQuestionForm').reset();
+          alert('Thank you for your question! Our team will review it soon.');
+        };
+      }, 1500); // 1.5 seconds skeleton loading
+    });
+  </script>
+</body>
+</html>

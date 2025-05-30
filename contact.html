@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - SoulMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8fa;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      background: linear-gradient(135deg, #f30554 0%, #c30af6 100%);
+      height: 100%;
+    }
+    .contact-container {
+      max-width: 480px;
+      margin: 3rem auto 2rem auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      padding: 2.2rem 2rem 1.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      color: #ff3576;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .contact-info {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .contact-info p {
+      margin: 0.3rem 0;
+      color: #444;
+      font-size: 1.05rem;
+    }
+    .contact-info a {
+      color: #ff3576;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .contact-info a:hover {
+      color: #ff6b6b;
+      text-decoration: underline;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 7px;
+      font-size: 1rem;
+      background: #f8f8fa;
+      transition: border 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      resize: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #ff3576;
+      box-shadow: 0 0 0 2px #ff357633;
+      outline: none;
+    }
+    #submit-btn {
+      background: linear-gradient(90deg, #ff3576 0%, #ff6b6b 100%);
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 7px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(255,53,118,0.08);
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+      margin: 0 auto;
+      display: block;
+    }
+    #submit-btn:hover {
+      background: linear-gradient(90deg, #ff6b6b 0%, #ff3576 100%);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 4px 18px rgba(255,53,118,0.13);
+    }
+    .success-message {
+      color: #28a745;
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 600;
+      display: none;
+    }
+    .close-contact {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        font-size: 2.2rem;
+        color: #ff3576;
+        text-decoration: none;
+        font-weight: bold;
+        z-index: 10;
+        transition: color 0.2s;
+        background: none;
+        border: none;
+        cursor: pointer;
+        line-height: 1;
+    }
+    .close-contact:hover {
+        color: #ff6b6b;
+    }
+    /* Skeleton Loader Styles */
+    .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: pulse 1.5s infinite linear;
+        border-radius: 8px;
+        margin-bottom: 14px;
+    }
+    .skeleton-title {
+        width: 60%;
+        height: 32px;
+        margin: 0 auto 24px auto;
+    }
+    .skeleton-info {
+      width: 80%;
+      height: 18px;
+      margin: 0 auto 10px auto;
+    }
+    .skeleton-input {
+        width: 90%;
+        height: 38px;
+        margin: 0 auto 10px auto;
+    }
+    .skeleton-btn {
+        width: 120px;
+        height: 38px;
+        margin: 0 auto 0 0;
+    }
+    @keyframes pulse {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+    @media (max-width: 720px) {
+      .contact-container {
+        padding: 1.2rem 0.5rem;
+        width: 90%;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+        .skeleton-title { height: 24px; }
+        .skeleton-info { height: 16px; }
+        .skeleton-input { height: 36px; }
+      .close-contact {
+        font-size: 1.8rem;
+        top: 10px;
+        left: 10px;
+      }
+    }
+    @media (max-width: 460px) {
+      .contact-container {
+        width: 90%;
+        padding: 1.2rem 0.5rem;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      .skeleton-title { height: 24px; }
+      .skeleton-info { height: 16px; }
+      .skeleton-input { height: 36px; }
+      .close-contact {
+        font-size: 1.8rem;
+        top: 3px;
+        left: 3px;
+      }
+        
+    }
+    </style>
+</head>
+<body>
+    <div class="contact-container" id="contactContainer">
+    <!-- Skeleton Loader -->
+    <div id="skeletonLoader">
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-info"></div>
+      <div class="skeleton skeleton-info"></div>
+      <div class="skeleton skeleton-info"></div>
+      <div class="skeleton skeleton-input"></div>
+      <div class="skeleton skeleton-input"></div>
+      <div class="skeleton skeleton-input" style="height:70px;"></div>
+      <div class="skeleton skeleton-btn"></div>
+    </div>
+    <!-- Actual Content (hidden initially) -->
+    <div id="contactContent" style="display:none;">
+      <!-- Cross button at top left -->
+      <button class="close-contact" onclick="history.back()">&times;</button>
+      <h1>Contact Us</h1>
+      <div class="contact-info">
+        <p><strong>Email:</strong> <a href="mailto:support@soulmate.com">support@soulmate.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></p>
+        <p><strong>Address:</strong> 123, SoulMate Lane, New Delhi, India</p>
+      </div>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button id="submit-btn" type="submit">Send Message</button>
+      </form>
+      <div class="success-message" id="successMessage">Thank you! Your message has been sent.</div>
+    </div>
+  </div>
+  <script>
+    // Skeleton loading simulation
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.getElementById('skeletonLoader').style.display = 'none';
+        document.getElementById('contactContent').style.display = 'block';
+      }, 1200); // 1.2 seconds skeleton loading
+    });
+
+    // Simple form handler (demo only)
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('contactForm');
+      if(form){
+        form.onsubmit = function(e) {
+          e.preventDefault();
+          document.getElementById('successMessage').style.display = 'block';
+          this.reset();
+          setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'none';
+          }, 4000);
+        };
+      }
+    });
+  </script>
+</body>
+</html>
