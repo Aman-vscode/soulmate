@@ -152,9 +152,10 @@
         margin: 0 auto 10px auto;
     }
     .skeleton-btn {
-        width: 120px;
-        height: 38px;
-        margin: 0 auto 0 0;
+      width: 120px;
+      height: 38px;
+      margin: 0 auto 14px auto;
+      display: block;
     }
     @keyframes pulse {
         0% { background-position: 200% 0; }
@@ -210,8 +211,13 @@
       <div class="skeleton skeleton-info"></div>
       <div class="skeleton skeleton-input"></div>
       <div class="skeleton skeleton-input"></div>
+      <div class="skeleton skeleton-input"></div>
+      <div class="skeleton skeleton-input"></div>
       <div class="skeleton skeleton-input" style="height:70px;"></div>
       <div class="skeleton skeleton-btn"></div>
+      <div class="skeleton skeleton-info"></div>
+      <div class="skeleton skeleton-info"></div>
+      <div class="skeleton skeleton-info"></div>
     </div>
     <!-- Actual Content (hidden initially) -->
     <div id="contactContent" style="display:none;">
@@ -226,13 +232,24 @@
       <form id="contactForm">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number (optional)">
+        <input type="text" name="subject" placeholder="Subject (optional)">
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button id="submit-btn" type="submit">Send Message</button>
       </form>
+      <div style="margin-top:1.5rem; font-size:0.98rem; color:#666; text-align:center;">
+        <p><strong>Business Hours:</strong> Mon - Sat, 9:00 AM - 7:00 PM IST</p>
+        <p><strong>Support:</strong> We aim to respond to all queries within 24 hours.</p>
+        <p><strong>Follow us:</strong>
+          <a href="https://facebook.com/" target="_blank" style="color:#3b5998; margin:0 6px;">Facebook</a> |
+          <a href="https://twitter.com/" target="_blank" style="color:#1da1f2; margin:0 6px;">Twitter</a> |
+          <a href="https://instagram.com/" target="_blank" style="color:#e4405f; margin:0 6px;">Instagram</a>
+        </p>
+      </div>
       <div class="success-message" id="successMessage">Thank you! Your message has been sent.</div>
     </div>
   </div>
-  <br/><br/><br/><br/>
+  <br/><br/><br/>
   <footer id="footer">
        &copy; 2024 SoulMate Matrimony. All Rights Reserved.
     </footer>
