@@ -3,7 +3,7 @@ Welcome to Soulmate, a simple and elegant matrimonial website built with HTML, C
 
 Features:
 1. User registration and login.
-2. Responsive design for mobile and desktop.
+2. Responsive design for mobile and desktop.  
 NOTE: Navigating from one page to another take some time to load content and show skeleton loading this is the part of our coding so don't worry about that. Delay time is fixed for every page.
 
 Technologies Used:
@@ -11,5 +11,5 @@ Technologies Used:
 2. CSS3: Styling and layout
 3. JavaScript: basic interactivity
 
-Acknowledgement:
+Acknowledgement:  
 Inspiration from existing matrimonial platforms
